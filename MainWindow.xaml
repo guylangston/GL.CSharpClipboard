@@ -1,0 +1,53 @@
+﻿<Window x:Class="CSharpClipboard.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSharpClipboard"
+        mc:Ignorable="d"
+        Title="CSharp Clipboard Blotter" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+
+       
+
+        <StackPanel Orientation="Vertical" Grid.Row="0">
+            <StackPanel Orientation="Horizontal" Height="20" Margin="5">
+                
+                <CheckBox IsChecked="{Binding Path=IncludeHeaders, Mode=TwoWay}" Margin="10 0 10 0">Incl. Headers</CheckBox>
+                
+
+                <Button Click="Transform_OnClick" Margin="10 0">Transform...</Button>
+                <Button Click="PasteAndTransform_OnClick" Margin="10 0">Paste And Transform...</Button>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock>Verb:</TextBlock>
+                <ComboBox MinWidth="400" ItemsSource="{Binding Path=Providers}"  DisplayMemberPath="Verb" SelectedItem="{Binding Path=Provider}"/>
+            </StackPanel>
+
+           
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="400" />
+                </Grid.ColumnDefinitions>
+                <TextBox AcceptsReturn="True" FontFamily="Consolas" TextWrapping="WrapWithOverflow"  Grid.Column="0" Text="{Binding Source, Mode=TwoWay}"></TextBox>
+                <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+                <TextBox FontFamily="Consolas" Grid.Column="2"  Text="{Binding Target}"></TextBox>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <TextBlock Text="{Binding Footer}"></TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>
