@@ -62,6 +62,7 @@ namespace CSharpClipboard
             }
         }
 
+        
         public string Footer
         {
             get => footer;
